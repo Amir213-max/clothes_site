@@ -11,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="transition-colors duration-500">
-      <body className="antialiased bg-[#FAF6F3] dark:bg-[#1C1715] text-[#3B302B] dark:text-[#F5F2EF] transition-colors duration-500">
+      <body className="antialiased">
         <Navbar />
         <main className="pt-16">{children}</main>
         <Footer />

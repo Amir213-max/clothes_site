@@ -7,7 +7,7 @@ import Newsletter from '@/components/home/Newsletter';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#FAF6F3] dark:bg-[#1C1715] transition-colors duration-500">
+    <div className="min-h-screen bg-[#FAF6F3]">
       <HeroSection />
       <FeatureSteps />
       <FeaturedProducts products={data.products} />
