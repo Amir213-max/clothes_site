@@ -62,7 +62,7 @@ export default function ProductCard({ product }) {
           </p>
         </div>
         
-        <div className="flex items-center justify-between pt-2">
+        <div className="flex items-center flex-wrap justify-between pt-2">
           <div className="flex items-baseline space-x-2">
             <span className="font-bold text-2xl text-[#2A1E19] dark:text-[#F5F2EF]">
               ${product.price}

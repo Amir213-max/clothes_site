@@ -3,8 +3,11 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
-
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import { FiMoreVertical } from "react-icons/fi";
 export default function DesignerPage() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const [selectedTool, setSelectedTool] = useState('fabric');
   const [selectedPart, setSelectedPart] = useState('body');
   const [designState, setDesignState] = useState({
@@ -54,50 +57,156 @@ export default function DesignerPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#FAF6F3] via-[#FFFDFC] to-[#FAF6F3] dark:from-[#1C1715] dark:via-[#2A1E19] dark:to-[#1C1715]">
       {/* Top Toolbar */}
-      <div className="bg-[#FFFDFC]/95 dark:bg-[#2A1E19]/95 backdrop-blur-md border-b border-[#8C7E77]/10 dark:border-[#B8B0AC]/10 sticky top-16 z-40 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-6">
-              <Button variant="ghost" size="sm" className="hover:bg-[#C9A47A]/10">
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                </svg>
-                Back to Shop
-              </Button>
-              <div className="h-6 w-px bg-[#8C7E77]/20"></div>
-              <h1 className="font-serif text-2xl text-[#2A1E19] dark:text-[#F5F2EF]">Design Studio</h1>
-            </div>
-            
-            <div className="flex items-center space-x-3">
-              <Button variant="ghost" size="sm" className="hover:bg-[#C9A47A]/10">
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
-                </svg>
-                Undo
-              </Button>
-              <Button variant="ghost" size="sm" className="hover:bg-[#C9A47A]/10">
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 10h-10a8 8 0 00-8 8v2m18-10l-6 6m6-6l-6-6" />
-                </svg>
-                Redo
-              </Button>
-              <div className="h-6 w-px bg-[#8C7E77]/20"></div>
-              <Button variant="outline" size="sm" className="border-[#C9A47A] text-[#C9A47A] hover:bg-[#C9A47A] hover:text-[#2A1E19]">
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12" />
-                </svg>
-                Save Design
-              </Button>
-              <Button size="sm" className="shadow-lg">
-                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01" />
-                </svg>
-                Add to Cart
-              </Button>
-            </div>
+      <div className="bg-[#FFFDFC]/95 dark:bg-[#2A1E19]/95 backdrop-blur-md border-b border-[#8C7E77]/10 dark:border-[#B8B0AC]/10 sticky top-14 z-40 shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="flex items-center justify-between">
+          {/* Left side */}
+          <div className="flex items-center space-x-6">
+            <Button variant="ghost" size="sm" className="hover:bg-[#C9A47A]/10">
+              <svg
+                className="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                />
+              </svg>
+              Back to Shop
+            </Button>
+            <div className="h-6 w-px bg-[#8C7E77]/20"></div>
+            <h1 className="font-serif text-2xl text-[#2A1E19] dark:text-[#F5F2EF]">
+              Design Studio
+            </h1>
+          </div>
+
+          {/* Right side */}
+          <div className="hidden md:flex items-center space-x-3">
+            <Button variant="ghost" size="sm" className="hover:bg-[#C9A47A]/10">
+              <svg
+                className="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
+                />
+              </svg>
+              Undo
+            </Button>
+            <Button variant="ghost" size="sm" className="hover:bg-[#C9A47A]/10">
+              <svg
+                className="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 10h-10a8 8 0 00-8 8v2m18-10l-6 6m6-6l-6-6"
+                />
+              </svg>
+              Redo
+            </Button>
+            <div className="h-6 w-px bg-[#8C7E77]/20"></div>
+            <Button
+              variant="outline"
+              size="sm"
+              className="border-[#C9A47A] text-[#C9A47A] hover:bg-[#C9A47A] hover:text-[#2A1E19]"
+            >
+              <svg
+                className="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12"
+                />
+              </svg>
+              Save Design
+            </Button>
+            <Button size="sm" className="shadow-lg">
+              <svg
+                className="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"
+                />
+              </svg>
+              Add to Cart
+            </Button>
+          </div>
+
+          {/* Mobile Dropdown Menu */}
+          <div className="relative md:hidden">
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            >
+              <FiMoreVertical size={22} />
+            </button>
+
+            <AnimatePresence>
+              {menuOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute right-0 mt-2 w-44 bg-white dark:bg-[#2A1E19] rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-50"
+                >
+                  <button
+                    onClick={() => setMenuOpen(false)}
+                    className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-800"
+                  >
+                    Undo
+                  </button>
+                  <button
+                    onClick={() => setMenuOpen(false)}
+                    className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-800"
+                  >
+                    Redo
+                  </button>
+                  <button
+                    onClick={() => setMenuOpen(false)}
+                    className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-800"
+                  >
+                    Save Design
+                  </button>
+                  <Link
+                    href="/cart"
+                    onClick={() => setMenuOpen(false)}
+                    className="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-800"
+                  >
+                    Add to Cart
+                  </Link>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </div>
+    </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
