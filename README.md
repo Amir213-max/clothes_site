@@ -1,36 +1,108 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ÉTOILE - Luxury Fashion Customization Platform
 
-## Getting Started
+A complete, responsive, and elegant front-end for a high-end clothing customization brand built with Next.js and Tailwind CSS.
 
-First, run the development server:
+## 🎯 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Luxury Design System**: Custom color palette with soft beige and espresso tones
+- **Responsive Layout**: Mobile-first design that works on all devices
+- **Product Customization**: Interactive designer tool for personalized clothing
+- **E-commerce Functionality**: Complete shopping cart and checkout flow
+- **User Management**: Profile pages with saved designs and order history
+- **Modern UI Components**: Reusable components with elegant animations
+
+## 🎨 Design System
+
+- **Primary Background**: #FAF6F3 (soft ivory)
+- **Main Text**: #3B302B (espresso brown)
+- **Headings/Buttons**: #2A1E19 (dark mocha)
+- **Accent/Hover**: #C9A47A (warm nude gold)
+- **Secondary Background**: #FFFDFC (off white)
+- **Muted Text**: #8C7E77 (taupe gray)
+- **Fonts**: Playfair Display (titles) + Inter (body)
+
+## 📁 Project Structure
+
+```
+├── app/                    # Next.js App Router pages
+│   ├── page.js            # Home page
+│   ├── shop/              # Shop page with filters
+│   ├── product/[id]/      # Product detail pages
+│   ├── designer/          # Clothing customization tool
+│   ├── saved-designs/     # User's saved designs
+│   ├── cart/              # Shopping cart
+│   ├── checkout/          # Checkout flow
+│   ├── profile/           # User profile
+│   ├── about/             # About page
+│   └── contact/           # Contact page
+├── components/            # Reusable UI components
+│   ├── ui/               # Basic UI components
+│   ├── layout/           # Layout components
+│   └── home/             # Home page sections
+├── data/                 # Mock data
+│   └── data.json         # Product and user data
+└── public/               # Static assets
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Getting Started
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
 
-## Learn More
+3. **Open your browser**:
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
-To learn more about Next.js, take a look at the following resources:
+## 📱 Pages
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Home**: Hero section, how it works, featured products, testimonials
+- **Shop**: Product grid with filters and sorting
+- **Product Detail**: Image gallery, product info, reviews, shipping info
+- **Designer**: Interactive clothing customization tool
+- **Saved Designs**: User's saved design collection
+- **Cart**: Shopping cart with quantity management
+- **Checkout**: Complete order form with payment options
+- **Profile**: User account management with tabs
+- **About**: Brand story, mission, values, team
+- **Contact**: Contact form and business information
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ Technologies
 
-## Deploy on Vercel
+- **Framework**: Next.js 15 with App Router
+- **Styling**: Tailwind CSS 4
+- **Fonts**: Google Fonts (Playfair Display + Inter)
+- **Icons**: Heroicons (SVG)
+- **Images**: Next.js Image optimization
+- **Data**: Local JSON files
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎨 Customization
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The design system is fully customizable through Tailwind CSS variables in `app/globals.css`. All colors, fonts, and spacing can be easily modified to match your brand.
+
+## 📦 Components
+
+- **Button**: Multiple variants (primary, secondary, outline, ghost)
+- **Input**: Form inputs with labels and error states
+- **ProductCard**: Product display with customization options
+- **SectionTitle**: Consistent page headers
+- **Navbar**: Responsive navigation with mobile menu
+- **Footer**: Links and social media icons
+
+## 🔧 Development
+
+The project uses modern React patterns with:
+- Client-side state management
+- Responsive design principles
+- Accessibility best practices
+- Performance optimization
+- Clean component architecture
+
+## 📄 License
+
+This project is created for demonstration purposes. All rights reserved.

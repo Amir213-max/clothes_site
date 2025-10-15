@@ -1,0 +1,78 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "name": "Classic Linen Shirt",
+        "description": "A timeless linen shirt crafted with breathable fabric and a relaxed fit. Perfect for both casual and formal looks.",
+        "price": 89.99,
+        "image": "/images/Classic Linen Shirt.jpg",
+        "customizable": true,
+        "category": "Shirts"
+      },
+      {
+        "id": 2,
+        "name": "Silk Wrap Dress",
+        "description": "Elegant wrap dress made of natural silk, offering a soft touch and luxurious flow for special occasions.",
+        "price": 149.5,
+        "image": "/images/silk wrap dress.jpg",
+        "category": "Dresses"
+      },
+      {
+        "id": 3,
+        "name": "Tailored Blazer",
+        "description": "Structured blazer with sharp lines and refined details, made from premium cotton blend fabric.",
+        "price": 129.0,
+        "image": "/images/tailored blazer.jpg",
+        "customizable": false,
+        "category": "Blazers"
+      },
+      {
+        "id": 4,
+        "name": "Minimalist Cotton T-Shirt",
+        "description": "Soft-touch cotton t-shirt designed with simplicity and comfort in mind.",
+        "price": 39.99,
+        "image": "/images/Minimalist Cotton T-Shirt.jpg",
+        "customizable": true,
+        "category": "T-Shirts"
+      }
+    ],
+    "testimonials": [
+      {
+        "id": 1,
+        "name": "Sofia L.",
+        "text": "Absolutely loved the quality! The customization process was easy, and my linen shirt fits perfectly.",
+        "image": "https://randomuser.me/api/portraits/women/65.jpg"
+      },
+      {
+        "id": 2,
+        "name": "Emily R.",
+        "text": "Finally found a brand that combines luxury and personalization. Highly recommended!",
+        "image": "https://randomuser.me/api/portraits/women/44.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Lina D.",
+        "text": "The packaging, the fabric, and the design experience — everything felt premium.",
+        "image": "https://randomuser.me/api/portraits/women/21.jpg"
+      }
+    ],
+    "savedDesigns": [
+      {
+        "id": 101,
+        "preview": "/images/Summer Beige Shirt.jpg",
+        "title": "Summer Beige Shirt",
+        "date": "2025-09-10"
+      },
+      {
+        "id": 102,
+        "preview": "/images/Elegant Silk Dress.jpg",
+        "title": "Elegant Silk Dress",
+        "date": "2025-08-22"
+      }
+    ],
+    "user": {
+      "name": "Amir G.",
+      "email": "amir@example.com",
+      "avatar": "https://randomuser.me/api/portraits/men/41.jpg"
+    }
+  }
