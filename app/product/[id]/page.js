@@ -7,8 +7,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import data from '@/data/data.json';
 import Button from '@/components/ui/Button';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function ProductDetailPage({ params }) {
+  const { t } = useLanguage();
   const [selectedImage, setSelectedImage] = useState(0);
   const [activeTab, setActiveTab] = useState('description');
   const [quantity, setQuantity] = useState(1);
@@ -24,9 +26,9 @@ export default function ProductDetailPage({ params }) {
   const images = [product.image, product.image, product.image]; // Mock multiple images
 
   const tabs = [
-    { id: 'description', label: 'Description' },
-    { id: 'reviews', label: 'Reviews' },
-    { id: 'shipping', label: 'Shipping Info' }
+    { id: 'description', label: t('common.description') },
+    { id: 'reviews', label: t('common.reviews') },
+    { id: 'shipping', label: t('common.shipping') }
   ];
 
   const reviews = [
@@ -78,7 +80,7 @@ export default function ProductDetailPage({ params }) {
               <p className="text-3xl font-semibold text-[#2A1E19] mb-4">${product.price}</p>
               {product.customizable && (
                 <span className="inline-block bg-[#C9A47A] text-[#2A1E19] px-4 py-2 rounded-full text-sm font-medium">
-                  Customizable
+                  {t('common.customize')}
                 </span>
               )}
             </div>
@@ -90,7 +92,7 @@ export default function ProductDetailPage({ params }) {
             {/* Quantity and Actions */}
             <div className="space-y-4">
               <div className="flex items-center space-x-4">
-                <label className="text-[#2A1E19] font-medium">Quantity:</label>
+                <label className="text-[#2A1E19] font-medium">{t('common.quantity')}:</label>
                 <div className="flex items-center border-2 border-[#8C7E77] rounded-lg">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -110,12 +112,12 @@ export default function ProductDetailPage({ params }) {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="flex-1">
-                  Add to Cart
+                  {t('common.addToCart')}
                 </Button>
                 {product.customizable && (
                   <Link href={`/designer?product=${product.id}`} className="flex-1">
                     <Button variant="outline" size="lg" className="w-full">
-                      Customize Design
+                      {t('common.customize')}
                     </Button>
                   </Link>
                 )}
@@ -143,12 +145,12 @@ export default function ProductDetailPage({ params }) {
               <div className="text-[#8C7E77]">
                 {activeTab === 'description' && (
                   <div className="space-y-4">
-                    <p>This exquisite piece is crafted with the finest materials and attention to detail. Perfect for both casual and formal occasions.</p>
+                    <p>{t('product.description')}</p>
                     <ul className="list-disc list-inside space-y-2">
-                      <li>Premium fabric construction</li>
-                      <li>Hand-finished details</li>
-                      <li>Available in multiple sizes</li>
-                      <li>Easy care instructions included</li>
+                      <li>{t('product.premiumFabricConstruction')}</li>
+                      <li>{t('product.handFinishedDetails')}</li>
+                      <li>{t('product.availableInMultipleSizes')}</li>
+                      <li>{t('product.easyCareInstructionsIncluded')}</li>
                     </ul>
                   </div>
                 )}
@@ -177,16 +179,16 @@ export default function ProductDetailPage({ params }) {
                 {activeTab === 'shipping' && (
                   <div className="space-y-4">
                     <div>
-                      <h4 className="font-medium text-[#2A1E19] mb-2">Standard Shipping</h4>
-                      <p>5-7 business days • Free on orders over $100</p>
+                      <h4 className="font-medium text-[#2A1E19] mb-2">{t('product.standardShipping')}</h4>
+                      <p>{t('product.standardShippingDesc')}</p>
                     </div>
                     <div>
-                      <h4 className="font-medium text-[#2A1E19] mb-2">Express Shipping</h4>
-                      <p>2-3 business days • $15</p>
+                      <h4 className="font-medium text-[#2A1E19] mb-2">{t('product.expressShipping')}</h4>
+                      <p>{t('product.expressShippingDesc')}</p>
                     </div>
                     <div>
-                      <h4 className="font-medium text-[#2A1E19] mb-2">Returns</h4>
-                      <p>30-day return policy • Free returns on all orders</p>
+                      <h4 className="font-medium text-[#2A1E19] mb-2">{t('product.returns')}</h4>
+                      <p>{t('product.returnsDesc')}</p>
                     </div>
                   </div>
                 )}

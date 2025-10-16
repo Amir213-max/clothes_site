@@ -5,8 +5,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import SectionTitle from '@/components/ui/SectionTitle';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function CartPage() {
+  const { t } = useLanguage();
   // Mock cart data
   const [cartItems, setCartItems] = useState([
     {
@@ -49,8 +51,8 @@ export default function CartPage() {
     <div className="min-h-screen bg-[#FAF6F3]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <SectionTitle 
-          title="Shopping Cart" 
-          subtitle="Review your items and proceed to checkout."
+          title={t('cart.title')} 
+          subtitle={t('cart.subtitle')}
           className="mb-12"
         />
 
@@ -59,19 +61,19 @@ export default function CartPage() {
             <div className="w-24 h-24 bg-[#C9A47A]/20 rounded-full flex items-center justify-center mx-auto mb-6">
               <span className="text-4xl">🛒</span>
             </div>
-            <h3 className="font-serif text-2xl text-[#2A1E19] mb-4">Your Cart is Empty</h3>
+            <h3 className="font-serif text-2xl text-[#2A1E19] mb-4">{t('cart.yourCartIsEmpty')}</h3>
             <p className="text-[#8C7E77] mb-8 max-w-md mx-auto">
-              Start shopping to add items to your cart, or create a custom design.
+              {t('cart.startShoppingToAdd')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/shop">
                 <Button size="lg">
-                  Start Shopping
+                  {t('cart.startShopping')}
                 </Button>
               </Link>
               <Link href="/designer">
                 <Button variant="outline" size="lg">
-                  Create Design
+                  {t('cart.createDesign')}
                 </Button>
               </Link>
             </div>
@@ -102,7 +104,7 @@ export default function CartPage() {
                         </p>
                         {item.customizable && (
                           <span className="inline-block bg-[#C9A47A] text-[#2A1E19] px-3 py-1 rounded-full text-sm font-medium">
-                            Customizable
+                            {t('cart.customizable')}
                           </span>
                         )}
                       </div>
@@ -142,27 +144,27 @@ export default function CartPage() {
             {/* Order Summary */}
             <div className="lg:col-span-1">
               <div className="bg-[#FFFDFC] rounded-2xl p-6 shadow-lg sticky top-24">
-                <h3 className="font-serif text-xl text-[#2A1E19] mb-6">Order Summary</h3>
+                <h3 className="font-serif text-xl text-[#2A1E19] mb-6">{t('cart.orderSummary')}</h3>
                 
                 <div className="space-y-4 mb-6">
                   <div className="flex justify-between">
-                    <span className="text-[#8C7E77]">Subtotal</span>
+                    <span className="text-[#8C7E77]">{t('cart.subtotal')}</span>
                     <span className="text-[#2A1E19]">${subtotal.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[#8C7E77]">Shipping</span>
+                    <span className="text-[#8C7E77]">{t('cart.shipping')}</span>
                     <span className="text-[#2A1E19]">
-                      {shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}
+                      {shipping === 0 ? t('cart.free') : `$${shipping.toFixed(2)}`}
                     </span>
                   </div>
                   {shipping > 0 && (
                     <p className="text-sm text-[#8C7E77]">
-                      Add ${(100 - subtotal).toFixed(2)} more for free shipping
+                      {t('cart.addMoreForFreeShipping')} ${(100 - subtotal).toFixed(2)}
                     </p>
                   )}
                   <div className="border-t border-[#8C7E77]/20 pt-4">
                     <div className="flex justify-between">
-                      <span className="font-semibold text-[#2A1E19]">Total</span>
+                      <span className="font-semibold text-[#2A1E19]">{t('cart.total')}</span>
                       <span className="font-semibold text-[#2A1E19]">${total.toFixed(2)}</span>
                     </div>
                   </div>
@@ -170,13 +172,13 @@ export default function CartPage() {
 
                 <Link href="/checkout">
                   <Button size="lg" className="w-full mb-4">
-                    Proceed to Checkout
+                    {t('cart.proceedToCheckout')}
                   </Button>
                 </Link>
                 
                 <Link href="/shop">
                   <Button variant="outline" size="lg" className="w-full">
-                    Continue Shopping
+                    {t('cart.continueShopping')}
                   </Button>
                 </Link>
               </div>

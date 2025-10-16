@@ -2,8 +2,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function ProductCard({ product }) {
+  const { t } = useLanguage();
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -27,7 +29,7 @@ export default function ProductCard({ product }) {
         {/* Customizable badge */}
         {product.customizable && (
           <div className="absolute top-4 right-4 bg-[#FFFDFC]/95 backdrop-blur-sm text-[#C9A47A] px-3 py-1.5 rounded-full text-xs font-semibold shadow-lg border border-[#C9A47A]/20">
-            ✨ Customizable
+            ✨ {t('common.customize')}
           </div>
         )}
         
@@ -38,13 +40,13 @@ export default function ProductCard({ product }) {
           <div className="flex gap-3">
             <Link href={`/product/${product.id}`}>
               <button className="px-6 py-3 bg-[#C9A47A] text-[#2A1E19] rounded-xl font-semibold hover:bg-[#FAF6F3] transition-all duration-300 transform hover:scale-105 shadow-lg">
-                Quick View
+                {t('common.viewDetails')}
               </button>
             </Link>
             {product.customizable && (
               <Link href={`/designer?product=${product.id}`}>
                 <button className="px-6 py-3 bg-[#FFFDFC] text-[#2A1E19] rounded-xl font-semibold hover:bg-[#C9A47A] hover:text-[#2A1E19] transition-all duration-300 transform hover:scale-105 shadow-lg border border-[#8C7E77]/20">
-                  Customize
+                  {t('common.customize')}
                 </button>
               </Link>
             )}

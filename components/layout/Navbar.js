@@ -4,10 +4,13 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import DarkModeToggle from '@/components/ui/DarkModeToggle';
+import LanguageToggle from '@/components/ui/LanguageToggle';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { t, isRTL } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,31 +52,31 @@ export default function Navbar() {
           </Link> */}
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-[#2A1E19] dark:text-[#F5F2EF] hover:text-[#C9A47A] transition-all duration-300 font-medium relative group">
-              Home
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C9A47A] group-hover:w-full transition-all duration-300"></span>
+          <div className={`hidden md:flex items-center ${isRTL ? 'space-x-reverse space-x-8' : 'space-x-8'}`}>
+            <Link href="/" className={`text-[#2A1E19] dark:text-[#F5F2EF] hover:text-[#C9A47A] transition-all duration-300 font-medium relative group ${isRTL ? 'font-arabic' : ''}`}>
+              {t('navigation.home')}
+              <span className={`absolute -bottom-1 w-0 h-0.5 bg-[#C9A47A] group-hover:w-full transition-all duration-300 ${isRTL ? 'right-0' : 'left-0'}`}></span>
             </Link>
-            <Link href="/shop" className="text-[#2A1E19] dark:text-[#F5F2EF] hover:text-[#C9A47A] transition-all duration-300 font-medium relative group">
-              Shop
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C9A47A] group-hover:w-full transition-all duration-300"></span>
+            <Link href="/shop" className={`text-[#2A1E19] dark:text-[#F5F2EF] hover:text-[#C9A47A] transition-all duration-300 font-medium relative group ${isRTL ? 'font-arabic' : ''}`}>
+              {t('navigation.shop')}
+              <span className={`absolute -bottom-1 w-0 h-0.5 bg-[#C9A47A] group-hover:w-full transition-all duration-300 ${isRTL ? 'right-0' : 'left-0'}`}></span>
             </Link>
-            <Link href="/designer" className="text-[#2A1E19] dark:text-[#F5F2EF] hover:text-[#C9A47A] transition-all duration-300 font-medium relative group">
-              Designer
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C9A47A] group-hover:w-full transition-all duration-300"></span>
+            <Link href="/designer" className={`text-[#2A1E19] dark:text-[#F5F2EF] hover:text-[#C9A47A] transition-all duration-300 font-medium relative group ${isRTL ? 'font-arabic' : ''}`}>
+              {t('navigation.designer')}
+              <span className={`absolute -bottom-1 w-0 h-0.5 bg-[#C9A47A] group-hover:w-full transition-all duration-300 ${isRTL ? 'right-0' : 'left-0'}`}></span>
             </Link>
-            <Link href="/about" className="text-[#2A1E19] dark:text-[#F5F2EF] hover:text-[#C9A47A] transition-all duration-300 font-medium relative group">
-              About
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C9A47A] group-hover:w-full transition-all duration-300"></span>
+            <Link href="/about" className={`text-[#2A1E19] dark:text-[#F5F2EF] hover:text-[#C9A47A] transition-all duration-300 font-medium relative group ${isRTL ? 'font-arabic' : ''}`}>
+              {t('navigation.about')}
+              <span className={`absolute -bottom-1 w-0 h-0.5 bg-[#C9A47A] group-hover:w-full transition-all duration-300 ${isRTL ? 'right-0' : 'left-0'}`}></span>
             </Link>
-            <Link href="/contact" className="text-[#2A1E19] dark:text-[#F5F2EF] hover:text-[#C9A47A] transition-all duration-300 font-medium relative group">
-              Contact
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C9A47A] group-hover:w-full transition-all duration-300"></span>
+            <Link href="/contact" className={`text-[#2A1E19] mr-5 dark:text-[#F5F2EF] hover:text-[#C9A47A] transition-all duration-300 font-medium relative group ${isRTL ? 'font-arabic' : ''}`}>
+              {t('navigation.contact')}
+              <span className={`absolute -bottom-1 w-0 h-0.5 bg-[#C9A47A] group-hover:w-full transition-all duration-300 ${isRTL ? 'right-0' : 'left-0'}`}></span>
             </Link>
           </div>
 
           {/* Right side icons */}
-          <div className="flex items-center space-x-2">
+          <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
             <Link href="/saved-designs" className="p-3 text-[#2A1E19] dark:text-[#F5F2EF] hover:text-[#C9A47A] transition-all duration-300 rounded-xl hover:bg-[#C9A47A]/10">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -92,6 +95,9 @@ export default function Navbar() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             </Link>
+            
+            {/* Language Toggle */}
+            <LanguageToggle />
             
             {/* Dark Mode Toggle */}
             <DarkModeToggle />
@@ -112,20 +118,20 @@ export default function Navbar() {
         {isMenuOpen && (
           <div className="md:hidden border-t border-[#8C7E77]/20 dark:border-[#B8B0AC]/20 py-6 bg-[#FFFDFC]/95 dark:bg-[#2A1E19]/95 backdrop-blur-md">
             <div className="flex flex-col space-y-4">
-              <Link href="/" className="text-[#2A1E19] dark:text-[#F5F2EF] hover:text-[#C9A47A] transition-colors duration-300 py-2 font-medium">
-                Home
+              <Link href="/" className={`text-[#2A1E19] dark:text-[#F5F2EF] hover:text-[#C9A47A] transition-colors duration-300 py-2 font-medium ${isRTL ? 'font-arabic' : ''}`}>
+                {t('navigation.home')}
               </Link>
-              <Link href="/shop" className="text-[#2A1E19] dark:text-[#F5F2EF] hover:text-[#C9A47A] transition-colors duration-300 py-2 font-medium">
-                Shop
+              <Link href="/shop" className={`text-[#2A1E19] dark:text-[#F5F2EF] hover:text-[#C9A47A] transition-colors duration-300 py-2 font-medium ${isRTL ? 'font-arabic' : ''}`}>
+                {t('navigation.shop')}
               </Link>
-              <Link href="/designer" className="text-[#2A1E19] dark:text-[#F5F2EF] hover:text-[#C9A47A] transition-colors duration-300 py-2 font-medium">
-                Designer
+              <Link href="/designer" className={`text-[#2A1E19] dark:text-[#F5F2EF] hover:text-[#C9A47A] transition-colors duration-300 py-2 font-medium ${isRTL ? 'font-arabic' : ''}`}>
+                {t('navigation.designer')}
               </Link>
-              <Link href="/about" className="text-[#2A1E19] dark:text-[#F5F2EF] hover:text-[#C9A47A] transition-colors duration-300 py-2 font-medium">
-                About
+              <Link href="/about" className={`text-[#2A1E19] dark:text-[#F5F2EF] hover:text-[#C9A47A] transition-colors duration-300 py-2 font-medium ${isRTL ? 'font-arabic' : ''}`}>
+                {t('navigation.about')}
               </Link>
-              <Link href="/contact" className="text-[#2A1E19] dark:text-[#F5F2EF] hover:text-[#C9A47A] transition-colors duration-300 py-2 font-medium">
-                Contact
+              <Link href="/contact"  className={`text-[#2A1E19] dark:text-[#F5F2EF] hover:text-[#C9A47A] transition-all duration-300 font-medium relative group ${isRTL ? 'font-arabic' : ''}`}>
+                {t('navigation.contact')}
               </Link>
             </div>
           </div>

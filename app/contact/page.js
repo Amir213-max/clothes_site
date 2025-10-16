@@ -4,8 +4,10 @@ import { useState } from 'react';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
 import SectionTitle from '@/components/ui/SectionTitle';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function ContactPage() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -32,15 +34,15 @@ export default function ContactPage() {
     <div className="min-h-screen bg-[#FAF6F3]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <SectionTitle 
-          title="Get in Touch" 
-          subtitle="We'd love to hear from you. Send us a message and we'll respond as soon as possible."
+          title={t('contact.title')} 
+          subtitle={t('contact.subtitle')}
           className="mb-16"
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <div className="bg-[#FFFDFC] rounded-2xl p-8 shadow-lg">
-            <h2 className="font-serif text-2xl text-[#2A1E19] mb-6">Send us a Message</h2>
+            <h2 className="font-serif text-2xl text-[#2A1E19] mb-6">{t('contact.sendUsMessage')}</h2>
             
             {isSubmitted ? (
               <div className="text-center py-8">
@@ -49,21 +51,21 @@ export default function ContactPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="font-serif text-xl text-[#2A1E19] mb-2">Message Sent!</h3>
-                <p className="text-[#8C7E77]">Thank you for reaching out. We'll get back to you soon.</p>
+                <h3 className="font-serif text-xl text-[#2A1E19] mb-2">{t('contact.messageSent')}</h3>
+                <p className="text-[#8C7E77]">{t('contact.thankYouForReachingOut')}</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <Input
-                    label="Name"
+                    label={t('contact.name')}
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
                     required
                   />
                   <Input
-                    label="Email"
+                    label={t('contact.email')}
                     name="email"
                     type="email"
                     value={formData.email}
@@ -73,7 +75,7 @@ export default function ContactPage() {
                 </div>
                 
                 <Input
-                  label="Subject"
+                  label={t('contact.subject')}
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
@@ -82,7 +84,7 @@ export default function ContactPage() {
                 
                 <div>
                   <label className="block text-sm font-medium text-[#2A1E19] mb-2">
-                    Message
+                    {t('contact.message')}
                   </label>
                   <textarea
                     name="message"
@@ -90,13 +92,13 @@ export default function ContactPage() {
                     onChange={handleChange}
                     rows={6}
                     className="w-full p-4 border-2 border-[#8C7E77] rounded-xl bg-[#FAF6F3] text-[#2A1E19] placeholder-[#8C7E77] focus:border-[#C9A47A] focus:outline-none resize-none"
-                    placeholder="Tell us how we can help you..."
+                    placeholder={t('contact.tellUsHowWeCanHelp')}
                     required
                   />
                 </div>
                 
                 <Button type="submit" size="lg" className="w-full">
-                  Send Message
+                  {t('contact.sendMessage')}
                 </Button>
               </form>
             )}
@@ -105,7 +107,7 @@ export default function ContactPage() {
           {/* Contact Information */}
           <div className="space-y-8">
             <div className="bg-[#FFFDFC] rounded-2xl p-8 shadow-lg">
-              <h2 className="font-serif text-2xl text-[#2A1E19] mb-6">Contact Information</h2>
+              <h2 className="font-serif text-2xl text-[#2A1E19] mb-6">{t('contact.contactInformation')}</h2>
               
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
@@ -116,12 +118,8 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-medium text-[#2A1E19] mb-1">Address</h3>
-                    <p className="text-[#8C7E77]">
-                      123 Fashion Avenue<br />
-                      New York, NY 10001<br />
-                      United States
-                    </p>
+                    <h3 className="font-medium text-[#2A1E19] mb-1">{t('contact.address')}</h3>
+                    <p className="text-[#8C7E77]" dangerouslySetInnerHTML={{ __html: t('contact.addressValue') }} />
                   </div>
                 </div>
 
@@ -132,8 +130,8 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-medium text-[#2A1E19] mb-1">Phone</h3>
-                    <p className="text-[#8C7E77]">+1 (555) 123-4567</p>
+                    <h3 className="font-medium text-[#2A1E19] mb-1">{t('contact.phone')}</h3>
+                    <p className="text-[#8C7E77]">{t('contact.phoneValue')}</p>
                   </div>
                 </div>
 
@@ -144,8 +142,8 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-medium text-[#2A1E19] mb-1">Email</h3>
-                    <p className="text-[#8C7E77]">hello@etoile.com</p>
+                    <h3 className="font-medium text-[#2A1E19] mb-1">{t('contact.email')}</h3>
+                    <p className="text-[#8C7E77]">{t('contact.emailValue')}</p>
                   </div>
                 </div>
 
@@ -156,12 +154,8 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-medium text-[#2A1E19] mb-1">Business Hours</h3>
-                    <p className="text-[#8C7E77]">
-                      Monday - Friday: 9:00 AM - 6:00 PM<br />
-                      Saturday: 10:00 AM - 4:00 PM<br />
-                      Sunday: Closed
-                    </p>
+                    <h3 className="font-medium text-[#2A1E19] mb-1">{t('contact.businessHours')}</h3>
+                    <p className="text-[#8C7E77]" dangerouslySetInnerHTML={{ __html: t('contact.businessHoursValue') }} />
                   </div>
                 </div>
               </div>
@@ -169,7 +163,7 @@ export default function ContactPage() {
 
             {/* Map Placeholder */}
             <div className="bg-[#FFFDFC] rounded-2xl p-8 shadow-lg">
-              <h3 className="font-serif text-xl text-[#2A1E19] mb-4">Find Us</h3>
+              <h3 className="font-serif text-xl text-[#2A1E19] mb-4">{t('contact.findUs')}</h3>
               <div className="aspect-video bg-[#8C7E77]/20 rounded-xl flex items-center justify-center">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-[#C9A47A] rounded-full flex items-center justify-center mx-auto mb-4">
@@ -178,8 +172,8 @@ export default function ContactPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                   </div>
-                  <p className="text-[#8C7E77]">Interactive Map</p>
-                  <p className="text-sm text-[#8C7E77]/60">123 Fashion Avenue, New York, NY</p>
+                  <p className="text-[#8C7E77]">{t('contact.interactiveMap')}</p>
+                  <p className="text-sm text-[#8C7E77]/60">{t('contact.addressMap')}</p>
                 </div>
               </div>
             </div>

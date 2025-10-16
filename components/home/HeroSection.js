@@ -1,8 +1,12 @@
+"use client";
 import Image from 'next/image';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function HeroSection() {
+  const { t, isRTL } = useLanguage();
+  
   return (
     <section className="relative min-h-screen flex items-center bg-gradient-to-br from-[#FAF6F3] via-[#FFFDFC] to-[#FAF6F3] dark:from-[#1C1715] dark:via-[#2A1E19] dark:to-[#1C1715] pt-16">
       {/* Background Elements */}
@@ -18,30 +22,29 @@ export default function HeroSection() {
           <div className="space-y-10">
             <div className="space-y-6">
               <div className="inline-block">
-                <span className="inline-block px-4 py-2 bg-[#C9A47A]/10 text-[#C9A47A] text-sm font-medium rounded-full border border-[#C9A47A]/20">
-                  ✨ Luxury Customization
+                <span className={`inline-block px-4 py-2 bg-[#C9A47A]/10 text-[#C9A47A] text-sm font-medium rounded-full border border-[#C9A47A]/20 ${isRTL ? 'font-arabic' : ''}`}>
+                  {t('hero.badge')}
                 </span>
               </div>
               
-              <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-[#2A1E19] dark:text-[#F5F2EF] leading-[1.1] font-bold">
-                Design Your
+              <h1 className={`font-serif text-5xl md:text-6xl lg:text-7xl text-[#2A1E19] dark:text-[#F5F2EF] leading-[1.1] font-bold ${isRTL ? 'font-arabic' : ''}`}>
+                {t('hero.title')}
                 <span className="block bg-gradient-to-r from-[#C9A47A] to-[#8C7E77] bg-clip-text text-transparent">
-                  Perfect Wardrobe
+                  {t('hero.titleHighlight')}
                 </span>
               </h1>
               
-              <p className="text-xl md:text-2xl text-[#8C7E77] dark:text-[#B8B0AC] max-w-2xl leading-relaxed">
-                Create personalized luxury clothing that reflects your unique style. 
-                From concept to creation, ÉTOILE brings your vision to life with 
-                <span className="font-semibold text-[#2A1E19] dark:text-[#F5F2EF]"> premium craftsmanship</span>.
+              <p className={`text-xl md:text-2xl text-[#8C7E77] dark:text-[#B8B0AC] max-w-2xl leading-relaxed ${isRTL ? 'font-arabic' : ''}`}>
+                {t('hero.description')}
+                <span className="font-semibold text-[#2A1E19] dark:text-[#F5F2EF]"> {t('hero.descriptionHighlight')}</span>.
               </p>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-6">
+            <div className={`flex flex-col sm:flex-row gap-6 ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
               <Link href="/designer">
                 <Button size="lg" className="w-full sm:w-auto shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
-                  <span className="flex items-center space-x-2">
-                    <span>Start Designing</span>
+                  <span className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
+                    <span className={isRTL ? 'font-arabic' : ''}>{t('hero.startDesigning')}</span>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
@@ -50,8 +53,8 @@ export default function HeroSection() {
               </Link>
               <Link href="/shop">
                 <Button variant="outline" size="lg" className="w-full sm:w-auto border-2 hover:bg-[#2A1E19] hover:text-[#FAF6F3] transform hover:scale-105 transition-all duration-300">
-                  <span className="flex items-center space-x-2">
-                    <span>Shop Collection</span>
+                  <span className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
+                    <span className={isRTL ? 'font-arabic' : ''}>{t('hero.shopCollection')}</span>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                     </svg>
@@ -61,18 +64,18 @@ export default function HeroSection() {
             </div>
             
             {/* Trust indicators */}
-            <div className="flex items-center space-x-8 pt-8">
+            <div className={`flex items-center pt-8 ${isRTL ? 'space-x-reverse space-x-8' : 'space-x-8'}`}>
               <div className="text-center">
                 <div className="text-2xl font-bold text-[#2A1E19] dark:text-[#F5F2EF]">10K+</div>
-                <div className="text-sm text-[#8C7E77] dark:text-[#B8B0AC]">Happy Customers</div>
+                <div className={`text-sm text-[#8C7E77] dark:text-[#B8B0AC] ${isRTL ? 'font-arabic' : ''}`}>{t('hero.happyCustomers')}</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-[#2A1E19] dark:text-[#F5F2EF]">4.9★</div>
-                <div className="text-sm text-[#8C7E77] dark:text-[#B8B0AC]">Average Rating</div>
+                <div className={`text-sm text-[#8C7E77] dark:text-[#B8B0AC] ${isRTL ? 'font-arabic' : ''}`}>{t('hero.averageRating')}</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-[#2A1E19] dark:text-[#F5F2EF]">100%</div>
-                <div className="text-sm text-[#8C7E77] dark:text-[#B8B0AC]">Custom Made</div>
+                <div className={`text-sm text-[#8C7E77] dark:text-[#B8B0AC] ${isRTL ? 'font-arabic' : ''}`}>{t('hero.customMade')}</div>
               </div>
             </div>
           </div>
@@ -90,10 +93,10 @@ export default function HeroSection() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#2A1E19]/30 via-transparent to-transparent"></div>
               
               {/* Floating badge */}
-              <div className="absolute top-6 right-6 bg-[#FFFDFC]/95 backdrop-blur-sm rounded-2xl px-4 py-2 shadow-lg">
-                <div className="flex items-center space-x-2">
+              <div className={`absolute top-6 bg-[#FFFDFC]/95 backdrop-blur-sm rounded-2xl px-4 py-2 shadow-lg ${isRTL ? 'left-6' : 'right-6'}`}>
+                <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="text-sm font-medium text-[#2A1E19]">Live Design</span>
+                  <span className={`text-sm font-medium text-[#2A1E19] ${isRTL ? 'font-arabic' : ''}`}>{t('hero.liveDesign')}</span>
                 </div>
               </div>
             </div>
@@ -103,16 +106,16 @@ export default function HeroSection() {
             <div className="absolute -bottom-8 -left-8 w-40 h-40 bg-gradient-to-tr from-[#8C7E77] to-[#C9A47A] rounded-full opacity-15 blur-2xl"></div>
             
             {/* Floating cards */}
-            <div className="absolute -left-4 top-1/2 transform -translate-y-1/2 bg-[#FFFDFC] rounded-2xl p-4 shadow-xl border border-[#8C7E77]/10">
-              <div className="flex items-center space-x-3">
+            <div className={`absolute top-1/2 transform -translate-y-1/2 bg-[#FFFDFC] rounded-2xl p-4 shadow-xl border border-[#8C7E77]/10 ${isRTL ? '-right-4' : '-left-4'}`}>
+              <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
                 <div className="w-10 h-10 bg-[#C9A47A] rounded-xl flex items-center justify-center">
                   <svg className="w-5 h-5 text-[#2A1E19]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                   </svg>
                 </div>
                 <div>
-                  <div className="text-sm font-semibold text-[#2A1E19]">Premium Quality</div>
-                  <div className="text-xs text-[#8C7E77]">Handcrafted</div>
+                  <div className={`text-sm font-semibold text-[#2A1E19] ${isRTL ? 'font-arabic' : ''}`}>{t('hero.premiumQuality')}</div>
+                  <div className={`text-xs text-[#8C7E77] ${isRTL ? 'font-arabic' : ''}`}>{t('hero.handcrafted')}</div>
                 </div>
               </div>
             </div>

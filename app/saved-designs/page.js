@@ -1,16 +1,21 @@
+'use client';
+
 import data from '@/data/data.json';
 import Image from 'next/image';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import SectionTitle from '@/components/ui/SectionTitle';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function SavedDesignsPage() {
+  const { t } = useLanguage();
+  
   return (
     <div className="min-h-screen bg-[#FAF6F3]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <SectionTitle 
-          title="Your Saved Designs" 
-          subtitle="All your creative designs, ready to customize or add to cart."
+          title={t('savedDesigns.title')} 
+          subtitle={t('savedDesigns.subtitle')}
           className="mb-12"
         />
 
@@ -19,13 +24,13 @@ export default function SavedDesignsPage() {
             <div className="w-24 h-24 bg-[#C9A47A]/20 rounded-full flex items-center justify-center mx-auto mb-6">
               <span className="text-4xl">🎨</span>
             </div>
-            <h3 className="font-serif text-2xl text-[#2A1E19] mb-4">No Saved Designs Yet</h3>
+            <h3 className="font-serif text-2xl text-[#2A1E19] mb-4">{t('savedDesigns.noSavedDesignsYet')}</h3>
             <p className="text-[#8C7E77] mb-8 max-w-md mx-auto">
-              Start creating your perfect pieces with our designer tool. Your designs will appear here once you save them.
+              {t('savedDesigns.startCreatingPerfectPieces')}
             </p>
             <Link href="/designer">
               <Button size="lg">
-                Start Designing
+                {t('savedDesigns.startDesigning')}
               </Button>
             </Link>
           </div>
@@ -47,20 +52,20 @@ export default function SavedDesignsPage() {
                     {design.title}
                   </h3>
                   <p className="text-[#8C7E77] text-sm mb-4">
-                    Saved on {new Date(design.date).toLocaleDateString()}
+                    {t('savedDesigns.savedOn')} {new Date(design.date).toLocaleDateString()}
                   </p>
                   
                   <div className="flex flex-wrap gap-2">
                     <Link href={`/designer?design=${design.id}`}>
                       <Button variant="outline" size="sm">
-                        ✏️ Edit
+                        ✏️ {t('savedDesigns.edit')}
                       </Button>
                     </Link>
                     <Button variant="outline" size="sm" className="text-red-600 hover:text-red-700">
-                      🗑️ Delete
+                      🗑️ {t('savedDesigns.delete')}
                     </Button>
                     <Button size="sm">
-                      🛒 Add to Cart
+                      🛒 {t('savedDesigns.addToCart')}
                     </Button>
                   </div>
                 </div>
@@ -72,19 +77,19 @@ export default function SavedDesignsPage() {
         {/* Quick Actions */}
         <div className="mt-16 text-center">
           <div className="bg-[#FFFDFC] rounded-2xl p-8 shadow-lg">
-            <h3 className="font-serif text-2xl text-[#2A1E19] mb-4">Ready to Create?</h3>
+            <h3 className="font-serif text-2xl text-[#2A1E19] mb-4">{t('savedDesigns.readyToCreate')}</h3>
             <p className="text-[#8C7E77] mb-6">
-              Start a new design or browse our collection for inspiration.
+              {t('savedDesigns.startNewDesignOrBrowse')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/designer">
                 <Button size="lg">
-                  Create New Design
+                  {t('savedDesigns.createNewDesign')}
                 </Button>
               </Link>
               <Link href="/shop">
                 <Button variant="outline" size="lg">
-                  Browse Collection
+                  {t('savedDesigns.browseCollection')}
                 </Button>
               </Link>
             </div>

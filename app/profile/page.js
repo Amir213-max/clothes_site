@@ -6,8 +6,10 @@ import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
 import SectionTitle from '@/components/ui/SectionTitle';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function ProfilePage() {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState('profile');
   const [isEditing, setIsEditing] = useState(false);
   const [profileData, setProfileData] = useState({
@@ -20,9 +22,9 @@ export default function ProfilePage() {
   });
 
   const tabs = [
-    { id: 'profile', label: 'Profile Info' },
-    { id: 'designs', label: 'Saved Designs' },
-    { id: 'orders', label: 'Order History' }
+    { id: 'profile', label: t('profile.profileInfo') },
+    { id: 'designs', label: t('profile.savedDesigns') },
+    { id: 'orders', label: t('profile.orderHistory') }
   ];
 
   // Mock order history
@@ -59,8 +61,8 @@ export default function ProfilePage() {
     <div className="min-h-screen bg-[#FAF6F3]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <SectionTitle 
-          title="My Profile" 
-          subtitle="Manage your account information and view your activity."
+          title={t('profile.title')} 
+          subtitle={t('profile.subtitle')}
           className="mb-12"
         />
 
@@ -106,25 +108,25 @@ export default function ProfilePage() {
             {activeTab === 'profile' && (
               <div className="bg-[#FFFDFC] rounded-2xl p-8 shadow-lg">
                 <div className="flex justify-between items-center mb-8">
-                  <h2 className="font-serif text-2xl text-[#2A1E19]">Profile Information</h2>
+                  <h2 className="font-serif text-2xl text-[#2A1E19]">{t('profile.profileInformation')}</h2>
                   <Button
                     variant={isEditing ? 'secondary' : 'outline'}
                     onClick={() => isEditing ? handleSave() : setIsEditing(true)}
                   >
-                    {isEditing ? 'Save Changes' : 'Edit Profile'}
+                    {isEditing ? t('profile.saveChanges') : t('profile.editProfile')}
                   </Button>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <Input
-                    label="Full Name"
+                    label={t('profile.fullName')}
                     name="name"
                     value={profileData.name}
                     onChange={handleChange}
                     disabled={!isEditing}
                   />
                   <Input
-                    label="Email"
+                    label={t('profile.email')}
                     name="email"
                     type="email"
                     value={profileData.email}
@@ -132,28 +134,28 @@ export default function ProfilePage() {
                     disabled={!isEditing}
                   />
                   <Input
-                    label="Phone"
+                    label={t('profile.phone')}
                     name="phone"
                     value={profileData.phone}
                     onChange={handleChange}
                     disabled={!isEditing}
                   />
                   <Input
-                    label="Address"
+                    label={t('profile.address')}
                     name="address"
                     value={profileData.address}
                     onChange={handleChange}
                     disabled={!isEditing}
                   />
                   <Input
-                    label="City"
+                    label={t('profile.city')}
                     name="city"
                     value={profileData.city}
                     onChange={handleChange}
                     disabled={!isEditing}
                   />
                   <Input
-                    label="ZIP Code"
+                    label={t('profile.zipCode')}
                     name="zipCode"
                     value={profileData.zipCode}
                     onChange={handleChange}
@@ -165,7 +167,7 @@ export default function ProfilePage() {
 
             {activeTab === 'designs' && (
               <div className="bg-[#FFFDFC] rounded-2xl p-8 shadow-lg">
-                <h2 className="font-serif text-2xl text-[#2A1E19] mb-8">Saved Designs</h2>
+                <h2 className="font-serif text-2xl text-[#2A1E19] mb-8">{t('profile.savedDesigns')}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {data.savedDesigns.map((design) => (
                     <div key={design.id} className="border border-[#8C7E77]/20 rounded-xl p-4">
@@ -179,11 +181,11 @@ export default function ProfilePage() {
                       </div>
                       <h3 className="font-serif text-lg text-[#2A1E19] mb-2">{design.title}</h3>
                       <p className="text-sm text-[#8C7E77] mb-4">
-                        Saved on {new Date(design.date).toLocaleDateString()}
+                        {t('profile.savedOn')} {new Date(design.date).toLocaleDateString()}
                       </p>
                       <div className="flex gap-2">
-                        <Button size="sm" variant="outline">Edit</Button>
-                        <Button size="sm">Add to Cart</Button>
+                        <Button size="sm" variant="outline">{t('profile.edit')}</Button>
+                        <Button size="sm">{t('profile.addToCart')}</Button>
                       </div>
                     </div>
                   ))}
@@ -193,15 +195,15 @@ export default function ProfilePage() {
 
             {activeTab === 'orders' && (
               <div className="bg-[#FFFDFC] rounded-2xl p-8 shadow-lg">
-                <h2 className="font-serif text-2xl text-[#2A1E19] mb-8">Order History</h2>
+                <h2 className="font-serif text-2xl text-[#2A1E19] mb-8">{t('profile.orderHistory')}</h2>
                 <div className="space-y-6">
                   {orders.map((order) => (
                     <div key={order.id} className="border border-[#8C7E77]/20 rounded-xl p-6">
                       <div className="flex justify-between items-start mb-4">
                         <div>
-                          <h3 className="font-serif text-lg text-[#2A1E19]">Order #{order.id}</h3>
+                          <h3 className="font-serif text-lg text-[#2A1E19]">{t('profile.order')} #{order.id}</h3>
                           <p className="text-sm text-[#8C7E77]">
-                            Placed on {new Date(order.date).toLocaleDateString()}
+                            {t('profile.placedOn')} {new Date(order.date).toLocaleDateString()}
                           </p>
                         </div>
                         <div className="text-right">
@@ -211,12 +213,12 @@ export default function ProfilePage() {
                               ? 'bg-green-100 text-green-800'
                               : 'bg-yellow-100 text-yellow-800'
                           }`}>
-                            {order.status}
+                            {order.status === 'Delivered' ? t('profile.delivered') : t('profile.processing')}
                           </span>
                         </div>
                       </div>
                       <div className="text-sm text-[#8C7E77]">
-                        <p className="mb-2">Items:</p>
+                        <p className="mb-2">{t('profile.items')}</p>
                         <ul className="list-disc list-inside space-y-1">
                           {order.items.map((item, index) => (
                             <li key={index}>{item}</li>

@@ -6,7 +6,9 @@ import Button from '@/components/ui/Button';
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMoreVertical } from "react-icons/fi";
+import { useLanguage } from '@/contexts/LanguageContext';
 export default function DesignerPage() {
+  const { t } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedTool, setSelectedTool] = useState('fabric');
   const [selectedPart, setSelectedPart] = useState('body');
@@ -18,40 +20,40 @@ export default function DesignerPage() {
   });
 
   const tools = [
-    { id: 'fabric', label: 'Fabric', icon: '🧵', description: 'Choose material' },
-    { id: 'color', label: 'Color', icon: '🎨', description: 'Select palette' },
-    { id: 'text', label: 'Text', icon: '✏️', description: 'Add personalization' },
-    { id: 'embroidery', label: 'Embroidery', icon: '✨', description: 'Add details' }
+    { id: 'fabric', label: t('designer.fabric'), icon: '🧵', description: t('designer.chooseFabric') },
+    { id: 'color', label: t('designer.color'), icon: '🎨', description: t('designer.chooseColor') },
+    { id: 'text', label: t('designer.text'), icon: '✏️', description: t('designer.addText') },
+    { id: 'embroidery', label: t('designer.embroidery'), icon: '✨', description: t('designer.addText') }
   ];
 
   const parts = [
-    { id: 'body', label: 'Body', icon: '👕' },
-    { id: 'sleeves', label: 'Sleeves', icon: '👔' },
-    { id: 'collar', label: 'Collar', icon: '👔' },
-    { id: 'buttons', label: 'Buttons', icon: '🔘' }
+    { id: 'body', label: t('designer.body'), icon: '👕' },
+    { id: 'sleeves', label: t('designer.sleeves'), icon: '👔' },
+    { id: 'collar', label: t('designer.collar'), icon: '👔' },
+    { id: 'buttons', label: t('designer.buttons'), icon: '🔘' }
   ];
 
   const fabrics = [
-    { id: 'linen', name: 'Premium Linen', color: '#F5F5DC', price: '+$20', description: 'Breathable & elegant' },
-    { id: 'silk', name: 'Silk', color: '#FFE4E1', price: '+$50', description: 'Luxurious & smooth' },
-    { id: 'cotton', name: 'Organic Cotton', color: '#F0F8FF', price: '+$10', description: 'Soft & sustainable' },
-    { id: 'wool', name: 'Merino Wool', color: '#F5F5F5', price: '+$30', description: 'Warm & durable' }
+    { id: 'linen', name: t('designer.premiumLinen'), color: '#F5F5DC', price: '+$20', description: t('designer.breathableElegant') },
+    { id: 'silk', name: t('designer.silk'), color: '#FFE4E1', price: '+$50', description: t('designer.luxuriousSmooth') },
+    { id: 'cotton', name: t('designer.organicCotton'), color: '#F0F8FF', price: '+$10', description: t('designer.softSustainable') },
+    { id: 'wool', name: t('designer.merinoWool'), color: '#F5F5F5', price: '+$30', description: t('designer.warmDurable') }
   ];
 
   const colors = [
-    { hex: '#C9A47A', name: 'Warm Nude' },
-    { hex: '#8C7E77', name: 'Taupe' },
-    { hex: '#2A1E19', name: 'Dark Mocha' },
-    { hex: '#FAF6F3', name: 'Soft Ivory' },
-    { hex: '#FFFDFC', name: 'Off White' },
-    { hex: '#D4AF37', name: 'Gold' }
+    { hex: '#C9A47A', name: t('designer.warmNude') },
+    { hex: '#8C7E77', name: t('designer.taupe') },
+    { hex: '#2A1E19', name: t('designer.darkMocha') },
+    { hex: '#FAF6F3', name: t('designer.softIvory') },
+    { hex: '#FFFDFC', name: t('designer.offWhite') },
+    { hex: '#D4AF37', name: t('designer.gold') }
   ];
 
   const embroideryOptions = [
-    { id: 'none', name: 'None', price: '$0' },
-    { id: 'floral', name: 'Floral Pattern', price: '+$25', description: 'Elegant botanical design' },
-    { id: 'geometric', name: 'Geometric', price: '+$20', description: 'Modern abstract pattern' },
-    { id: 'monogram', name: 'Monogram', price: '+$15', description: 'Personal initials' }
+    { id: 'none', name: t('designer.none'), price: '$0' },
+    { id: 'floral', name: t('designer.floralPattern'), price: '+$25', description: t('designer.elegantBotanicalDesign') },
+    { id: 'geometric', name: t('designer.geometric'), price: '+$20', description: t('designer.modernAbstractPattern') },
+    { id: 'monogram', name: t('designer.monogram'), price: '+$15', description: t('designer.personalInitials') }
   ];
 
   return (
@@ -76,11 +78,11 @@ export default function DesignerPage() {
                   d="M10 19l-7-7m0 0l7-7m-7 7h18"
                 />
               </svg>
-              Back to Shop
+              {t('designer.backToShop')}
             </Button>
             <div className="h-6 w-px bg-[#8C7E77]/20"></div>
             <h1 className="font-serif text-2xl text-[#2A1E19] dark:text-[#F5F2EF]">
-              Design Studio
+              {t('designer.title')}
             </h1>
           </div>
 
@@ -100,7 +102,7 @@ export default function DesignerPage() {
                   d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
                 />
               </svg>
-              Undo
+              {t('designer.undo')}
             </Button>
             <Button variant="ghost" size="sm" className="hover:bg-[#C9A47A]/10">
               <svg
@@ -116,7 +118,7 @@ export default function DesignerPage() {
                   d="M21 10h-10a8 8 0 00-8 8v2m18-10l-6 6m6-6l-6-6"
                 />
               </svg>
-              Redo
+              {t('designer.redo')}
             </Button>
             <div className="h-6 w-px bg-[#8C7E77]/20"></div>
             <Button
@@ -137,7 +139,7 @@ export default function DesignerPage() {
                   d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12"
                 />
               </svg>
-              Save Design
+              {t('designer.saveDesign')}
             </Button>
             <Button size="sm" className="shadow-lg">
               <svg
@@ -153,7 +155,7 @@ export default function DesignerPage() {
                   d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"
                 />
               </svg>
-              Add to Cart
+              {t('designer.addToCart')}
             </Button>
           </div>
 
@@ -179,26 +181,26 @@ export default function DesignerPage() {
                     onClick={() => setMenuOpen(false)}
                     className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-800"
                   >
-                    Undo
+                    {t('designer.undo')}
                   </button>
                   <button
                     onClick={() => setMenuOpen(false)}
                     className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-800"
                   >
-                    Redo
+                    {t('designer.redo')}
                   </button>
                   <button
                     onClick={() => setMenuOpen(false)}
                     className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-800"
                   >
-                    Save Design
+                    {t('designer.saveDesign')}
                   </button>
                   <Link
                     href="/cart"
                     onClick={() => setMenuOpen(false)}
                     className="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-800"
                   >
-                    Add to Cart
+                    {t('designer.addToCart')}
                   </Link>
                 </motion.div>
               )}
@@ -219,7 +221,7 @@ export default function DesignerPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z" />
                   </svg>
                 </span>
-                Product Parts
+                {t('designer.productParts')}
               </h3>
               <div className="space-y-3">
                 {parts.map((part) => (
@@ -263,7 +265,7 @@ export default function DesignerPage() {
                     <div className="w-20 h-20 bg-[#C9A47A]/20 rounded-full flex items-center justify-center mb-4 mx-auto backdrop-blur-sm">
                       <span className="text-3xl">✨</span>
                     </div>
-                    <p className="text-[#8C7E77] text-lg font-medium">Live Preview</p>
+                    <p className="text-[#8C7E77] text-lg font-medium">{t('designer.livePreview')}</p>
                     <p className="text-[#8C7E77]/60 text-sm mt-1">
                       {selectedPart} • {selectedTool}
                     </p>
@@ -279,25 +281,25 @@ export default function DesignerPage() {
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>
                   </span>
-                  Design Summary
+                  {t('designer.designSummary')}
                 </h4>
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
-                    <span className="text-[#8C7E77]">Fabric:</span>
+                    <span className="text-[#8C7E77]">{t('designer.fabric')}:</span>
                     <span className="ml-2 font-medium text-[#2A1E19]">{fabrics.find(f => f.id === designState.fabric)?.name}</span>
                   </div>
                   <div>
-                    <span className="text-[#8C7E77]">Color:</span>
+                    <span className="text-[#8C7E77]">{t('designer.color')}:</span>
                     <span className="ml-2 font-medium text-[#2A1E19]">{colors.find(c => c.hex === designState.color)?.name}</span>
                   </div>
                   {designState.text && (
                     <div className="col-span-2">
-                      <span className="text-[#8C7E77]">Text:</span>
+                      <span className="text-[#8C7E77]">{t('designer.text')}:</span>
                       <span className="ml-2 font-medium text-[#2A1E19]">"{designState.text}"</span>
                     </div>
                   )}
                   <div>
-                    <span className="text-[#8C7E77]">Embroidery:</span>
+                    <span className="text-[#8C7E77]">{t('designer.embroidery')}:</span>
                     <span className="ml-2 font-medium text-[#2A1E19]">{embroideryOptions.find(e => e.id === designState.embroidery)?.name}</span>
                   </div>
                 </div>
@@ -314,7 +316,7 @@ export default function DesignerPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                   </svg>
                 </span>
-                Design Tools
+                {t('designer.designTools')}
               </h3>
               
               {/* Tool Selection */}
@@ -344,7 +346,7 @@ export default function DesignerPage() {
                       <span className="w-5 h-5 bg-[#C9A47A] rounded-lg flex items-center justify-center mr-2">
                         <span className="text-xs">🧵</span>
                       </span>
-                      Choose Fabric
+                      {t('designer.chooseFabric')}
                     </h4>
                     <div className="space-y-3">
                       {fabrics.map((fabric) => (
@@ -382,7 +384,7 @@ export default function DesignerPage() {
                       <span className="w-5 h-5 bg-[#C9A47A] rounded-lg flex items-center justify-center mr-2">
                         <span className="text-xs">🎨</span>
                       </span>
-                      Choose Color
+                      {t('designer.chooseColor')}
                     </h4>
                     <div className="grid grid-cols-3 gap-3">
                       {colors.map((color) => (
@@ -408,17 +410,17 @@ export default function DesignerPage() {
                       <span className="w-5 h-5 bg-[#C9A47A] rounded-lg flex items-center justify-center mr-2">
                         <span className="text-xs">✏️</span>
                       </span>
-                      Add Text
+                      {t('designer.addText')}
                     </h4>
                     <input
                       type="text"
-                      placeholder="Enter your text..."
+                      placeholder={t('designer.enterYourText')}
                       value={designState.text}
                       onChange={(e) => setDesignState({...designState, text: e.target.value})}
                       className="w-full p-4 border-2 border-[#8C7E77]/20 rounded-2xl bg-[#FAF6F3] text-[#2A1E19] focus:border-[#C9A47A] focus:outline-none transition-colors duration-300"
                     />
                     <div className="mt-3 text-xs text-[#8C7E77]">
-                      Add personalization like your name or a special message
+                      {t('designer.addPersonalization')}
                     </div>
                   </div>
                 )}
@@ -429,7 +431,7 @@ export default function DesignerPage() {
                       <span className="w-5 h-5 bg-[#C9A47A] rounded-lg flex items-center justify-center mr-2">
                         <span className="text-xs">✨</span>
                       </span>
-                      Embroidery
+                      {t('designer.embroidery')}
                     </h4>
                     <div className="space-y-3">
                       {embroideryOptions.map((option) => (

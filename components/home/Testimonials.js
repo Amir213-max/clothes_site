@@ -1,23 +1,27 @@
+"use client";
 import Image from 'next/image';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Testimonials({ testimonials }) {
+  const { t, isRTL } = useLanguage();
+  
   return (
     <section className="py-20 bg-[#FFFDFC]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl text-[#2A1E19] mb-4">
-            What Our Customers Say
+          <h2 className={`font-serif text-4xl md:text-5xl text-[#2A1E19] mb-4 ${isRTL ? 'font-arabic' : ''}`}>
+            {t('testimonials.title')}
           </h2>
-          <p className="text-lg text-[#8C7E77] max-w-2xl mx-auto">
-            Join thousands of satisfied customers who have found their perfect style with ÉTOILE.
+          <p className={`text-lg text-[#8C7E77] max-w-2xl mx-auto ${isRTL ? 'font-arabic' : ''}`}>
+            {t('testimonials.subtitle')}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial) => (
             <div key={testimonial.id} className="bg-[#FAF6F3] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <div className="flex items-center mb-6">
-                <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4">
+              <div className={`flex items-center mb-6 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <div className={`relative w-12 h-12 rounded-full overflow-hidden ${isRTL ? 'ml-4' : 'mr-4'}`}>
                   <Image
                     src={testimonial.image}
                     alt={testimonial.name}
@@ -26,7 +30,7 @@ export default function Testimonials({ testimonials }) {
                   />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-[#2A1E19]">{testimonial.name}</h4>
+                  <h4 className={`font-semibold text-[#2A1E19] ${isRTL ? 'font-arabic' : ''}`}>{testimonial.name}</h4>
                   <div className="flex text-[#C9A47A]">
                     {[...Array(5)].map((_, i) => (
                       <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
@@ -36,7 +40,7 @@ export default function Testimonials({ testimonials }) {
                   </div>
                 </div>
               </div>
-              <p className="text-[#8C7E77] italic">
+              <p className={`text-[#8C7E77] italic ${isRTL ? 'font-arabic text-right' : ''}`}>
                 "{testimonial.text}"
               </p>
             </div>

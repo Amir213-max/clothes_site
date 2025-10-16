@@ -1,5 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
   --background: #FAF6F3;
@@ -28,6 +28,7 @@
   --color-muted: var(--muted);
   --font-serif: 'Playfair Display', serif;
   --font-sans: 'Inter', sans-serif;
+  --font-arabic: 'Tajawal', sans-serif;
 }
 
 * {
@@ -55,6 +56,22 @@ body {
 
 .font-sans {
   font-family: 'Inter', sans-serif;
+}
+
+.font-arabic {
+  font-family: 'Tajawal', sans-serif;
+}
+
+.font-tajawal {
+  font-family: 'Tajawal', sans-serif;
+}
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+.font-playfair {
+  font-family: 'Playfair Display', serif;
 }
 
 /* Custom scrollbar */

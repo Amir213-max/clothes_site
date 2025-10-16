@@ -5,9 +5,11 @@ import { useRouter } from 'next/navigation';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
 import SectionTitle from '@/components/ui/SectionTitle';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function CheckoutPage() {
   const router = useRouter();
+  const { t } = useLanguage();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
@@ -57,8 +59,8 @@ export default function CheckoutPage() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <h2 className="font-serif text-3xl text-[#2A1E19] mb-4">Processing Your Order</h2>
-          <p className="text-[#8C7E77]">Please wait while we process your payment...</p>
+          <h2 className="font-serif text-3xl text-[#2A1E19] mb-4">{t('checkout.processingYourOrder')}</h2>
+          <p className="text-[#8C7E77]">{t('checkout.pleaseWaitWhileProcessing')}</p>
         </div>
       </div>
     );
@@ -68,8 +70,8 @@ export default function CheckoutPage() {
     <div className="min-h-screen bg-[#FAF6F3]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <SectionTitle 
-          title="Checkout" 
-          subtitle="Complete your order with secure payment."
+          title={t('checkout.title')} 
+          subtitle={t('checkout.subtitle')}
           className="mb-12"
         />
 
@@ -79,10 +81,10 @@ export default function CheckoutPage() {
             <form onSubmit={handleSubmit} className="space-y-8">
               {/* Contact Information */}
               <div className="bg-[#FFFDFC] rounded-2xl p-6 shadow-lg">
-                <h3 className="font-serif text-xl text-[#2A1E19] mb-6">Contact Information</h3>
+                <h3 className="font-serif text-xl text-[#2A1E19] mb-6">{t('checkout.contactInformation')}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <Input
-                    label="Email"
+                    label={t('checkout.email')}
                     type="email"
                     name="email"
                     value={formData.email}
@@ -90,7 +92,7 @@ export default function CheckoutPage() {
                     required
                   />
                   <Input
-                    label="Phone"
+                    label={t('checkout.phone')}
                     type="tel"
                     name="phone"
                     value={formData.phone}
@@ -102,24 +104,24 @@ export default function CheckoutPage() {
 
               {/* Shipping Address */}
               <div className="bg-[#FFFDFC] rounded-2xl p-6 shadow-lg">
-                <h3 className="font-serif text-xl text-[#2A1E19] mb-6">Shipping Address</h3>
+                <h3 className="font-serif text-xl text-[#2A1E19] mb-6">{t('checkout.shippingAddress')}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <Input
-                    label="First Name"
+                    label={t('checkout.firstName')}
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleChange}
                     required
                   />
                   <Input
-                    label="Last Name"
+                    label={t('checkout.lastName')}
                     name="lastName"
                     value={formData.lastName}
                     onChange={handleChange}
                     required
                   />
                   <Input
-                    label="Address"
+                    label={t('checkout.address')}
                     name="address"
                     value={formData.address}
                     onChange={handleChange}
@@ -127,21 +129,21 @@ export default function CheckoutPage() {
                     className="md:col-span-2"
                   />
                   <Input
-                    label="City"
+                    label={t('checkout.city')}
                     name="city"
                     value={formData.city}
                     onChange={handleChange}
                     required
                   />
                   <Input
-                    label="ZIP Code"
+                    label={t('checkout.zipCode')}
                     name="zipCode"
                     value={formData.zipCode}
                     onChange={handleChange}
                     required
                   />
                   <div className="md:col-span-2">
-                    <label className="block text-sm font-medium text-[#2A1E19] mb-2">Country</label>
+                    <label className="block text-sm font-medium text-[#2A1E19] mb-2">{t('checkout.country')}</label>
                     <select
                       name="country"
                       value={formData.country}
@@ -149,11 +151,11 @@ export default function CheckoutPage() {
                       className="w-full p-3 border-2 border-[#8C7E77] rounded-xl bg-[#FAF6F3] text-[#2A1E19] focus:border-[#C9A47A] focus:outline-none"
                       required
                     >
-                      <option value="">Select Country</option>
-                      <option value="US">United States</option>
-                      <option value="CA">Canada</option>
-                      <option value="UK">United Kingdom</option>
-                      <option value="AU">Australia</option>
+                      <option value="">{t('checkout.selectCountry')}</option>
+                      <option value="US">{t('checkout.unitedStates')}</option>
+                      <option value="CA">{t('checkout.canada')}</option>
+                      <option value="UK">{t('checkout.unitedKingdom')}</option>
+                      <option value="AU">{t('checkout.australia')}</option>
                     </select>
                   </div>
                 </div>
@@ -161,7 +163,7 @@ export default function CheckoutPage() {
 
               {/* Delivery Method */}
               <div className="bg-[#FFFDFC] rounded-2xl p-6 shadow-lg">
-                <h3 className="font-serif text-xl text-[#2A1E19] mb-6">Delivery Method</h3>
+                <h3 className="font-serif text-xl text-[#2A1E19] mb-6">{t('checkout.deliveryMethod')}</h3>
                 <div className="space-y-4">
                   <label className="flex items-center p-4 border-2 border-[#8C7E77] rounded-xl cursor-pointer hover:border-[#C9A47A] transition-colors duration-300">
                     <input
@@ -173,8 +175,8 @@ export default function CheckoutPage() {
                       className="mr-4"
                     />
                     <div>
-                      <div className="font-medium text-[#2A1E19]">Standard Delivery</div>
-                      <div className="text-[#8C7E77]">5-7 business days • Free on orders over $100</div>
+                      <div className="font-medium text-[#2A1E19]">{t('checkout.standardDelivery')}</div>
+                      <div className="text-[#8C7E77]">{t('checkout.standardDeliveryDesc')}</div>
                     </div>
                   </label>
                   <label className="flex items-center p-4 border-2 border-[#8C7E77] rounded-xl cursor-pointer hover:border-[#C9A47A] transition-colors duration-300">
@@ -187,8 +189,8 @@ export default function CheckoutPage() {
                       className="mr-4"
                     />
                     <div>
-                      <div className="font-medium text-[#2A1E19]">Express Delivery</div>
-                      <div className="text-[#8C7E77]">2-3 business days • $15</div>
+                      <div className="font-medium text-[#2A1E19]">{t('checkout.expressDelivery')}</div>
+                      <div className="text-[#8C7E77]">{t('checkout.expressDeliveryDesc')}</div>
                     </div>
                   </label>
                 </div>
@@ -196,7 +198,7 @@ export default function CheckoutPage() {
 
               {/* Payment Method */}
               <div className="bg-[#FFFDFC] rounded-2xl p-6 shadow-lg">
-                <h3 className="font-serif text-xl text-[#2A1E19] mb-6">Payment Method</h3>
+                <h3 className="font-serif text-xl text-[#2A1E19] mb-6">{t('checkout.paymentMethod')}</h3>
                 <div className="space-y-4">
                   <label className="flex items-center p-4 border-2 border-[#8C7E77] rounded-xl cursor-pointer hover:border-[#C9A47A] transition-colors duration-300">
                     <input
@@ -209,7 +211,7 @@ export default function CheckoutPage() {
                     />
                     <div className="flex items-center">
                       <span className="text-2xl mr-3">💳</span>
-                      <span className="font-medium text-[#2A1E19]">Credit Card</span>
+                      <span className="font-medium text-[#2A1E19]">{t('checkout.creditCard')}</span>
                     </div>
                   </label>
                   <label className="flex items-center p-4 border-2 border-[#8C7E77] rounded-xl cursor-pointer hover:border-[#C9A47A] transition-colors duration-300">
@@ -223,14 +225,14 @@ export default function CheckoutPage() {
                     />
                     <div className="flex items-center">
                       <span className="text-2xl mr-3">🅿️</span>
-                      <span className="font-medium text-[#2A1E19]">PayPal</span>
+                      <span className="font-medium text-[#2A1E19]">{t('checkout.paypal')}</span>
                     </div>
                   </label>
                 </div>
               </div>
 
               <Button type="submit" size="lg" className="w-full">
-                Complete Order
+                {t('checkout.completeOrder')}
               </Button>
             </form>
           </div>
@@ -238,14 +240,14 @@ export default function CheckoutPage() {
           {/* Order Summary */}
           <div className="lg:col-span-1">
             <div className="bg-[#FFFDFC] rounded-2xl p-6 shadow-lg sticky top-24">
-              <h3 className="font-serif text-xl text-[#2A1E19] mb-6">Order Summary</h3>
+              <h3 className="font-serif text-xl text-[#2A1E19] mb-6">{t('checkout.orderSummary')}</h3>
               
               <div className="space-y-4 mb-6">
                 {orderItems.map((item, index) => (
                   <div key={index} className="flex justify-between">
                     <div>
                       <div className="font-medium text-[#2A1E19]">{item.name}</div>
-                      <div className="text-sm text-[#8C7E77]">Qty: {item.quantity}</div>
+                      <div className="text-sm text-[#8C7E77]">{t('checkout.qty')} {item.quantity}</div>
                     </div>
                     <div className="text-[#2A1E19]">${(item.price * item.quantity).toFixed(2)}</div>
                   </div>
@@ -253,17 +255,17 @@ export default function CheckoutPage() {
                 
                 <div className="border-t border-[#8C7E77]/20 pt-4 space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-[#8C7E77]">Subtotal</span>
+                    <span className="text-[#8C7E77]">{t('checkout.subtotal')}</span>
                     <span className="text-[#2A1E19]">${subtotal.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[#8C7E77]">Shipping</span>
+                    <span className="text-[#8C7E77]">{t('checkout.shipping')}</span>
                     <span className="text-[#2A1E19]">
-                      {shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}
+                      {shipping === 0 ? t('checkout.free') : `$${shipping.toFixed(2)}`}
                     </span>
                   </div>
                   <div className="flex justify-between font-semibold text-lg">
-                    <span className="text-[#2A1E19]">Total</span>
+                    <span className="text-[#2A1E19]">{t('checkout.total')}</span>
                     <span className="text-[#2A1E19]">${total.toFixed(2)}</span>
                   </div>
                 </div>

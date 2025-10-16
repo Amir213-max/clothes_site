@@ -1,6 +1,10 @@
+"use client";
 import Link from 'next/link';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Footer() {
+  const { t, isRTL } = useLanguage();
+  
   return (
     <footer className="bg-gradient-to-br from-[#2A1E19] to-[#1A1512] dark:from-[#1C1715] dark:to-[#0F0B08] text-[#FAF6F3] relative overflow-hidden">
       {/* Background decoration */}
@@ -19,29 +23,28 @@ export default function Footer() {
               </div>
               <span className="font-serif text-3xl font-bold">ÉTOILE</span>
             </div>
-            <p className="text-[#8C7E77] mb-8 max-w-lg text-lg leading-relaxed">
-              Create your perfect wardrobe with our luxury customization tools. 
-              Design personalized clothing that reflects your unique style with 
-              <span className="text-[#C9A47A] font-semibold"> premium craftsmanship</span>.
+            <p className={`text-[#8C7E77] mb-8 max-w-lg text-lg leading-relaxed ${isRTL ? 'font-arabic' : ''}`}>
+              {t('footer.description')}
+              <span className="text-[#C9A47A] font-semibold"> {t('footer.descriptionHighlight')}</span>.
             </p>
             
             {/* Newsletter */}
             <div className="mb-8">
-              <h4 className="font-serif text-lg text-[#FAF6F3] mb-4">Stay in Style</h4>
-              <div className="flex space-x-3">
+              <h4 className={`font-serif text-lg text-[#FAF6F3] mb-4 ${isRTL ? 'font-arabic' : ''}`}>{t('footer.stayInStyle')}</h4>
+              <div className={`flex ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
                 <input
                   type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-3 bg-[#1A1512] border border-[#8C7E77]/30 rounded-xl text-[#FAF6F3] placeholder-[#8C7E77] focus:border-[#C9A47A] focus:outline-none transition-colors duration-300"
+                  placeholder={t('footer.emailPlaceholder')}
+                  className={`flex-1 px-4 py-3 bg-[#1A1512] border border-[#8C7E77]/30 rounded-xl text-[#FAF6F3] placeholder-[#8C7E77] focus:border-[#C9A47A] focus:outline-none transition-colors duration-300 ${isRTL ? 'font-arabic text-right' : ''}`}
                 />
-                <button className="px-6 py-3 bg-[#C9A47A] text-[#2A1E19] rounded-xl font-semibold hover:bg-[#8C7E77] hover:text-[#FAF6F3] transition-all duration-300 transform hover:scale-105">
-                  Subscribe
+                <button className={`px-6 py-3 bg-[#C9A47A] text-[#2A1E19] rounded-xl font-semibold hover:bg-[#8C7E77] hover:text-[#FAF6F3] transition-all duration-300 transform hover:scale-105 ${isRTL ? 'font-arabic' : ''}`}>
+                  {t('footer.subscribe')}
                 </button>
               </div>
             </div>
             
             {/* Social Links */}
-            <div className="flex space-x-4">
+            <div className={`flex ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
               <a href="#" className="w-12 h-12 bg-[#1A1512] rounded-xl flex items-center justify-center text-[#8C7E77] hover:text-[#C9A47A] hover:bg-[#C9A47A]/10 transition-all duration-300 transform hover:scale-110">
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
@@ -67,76 +70,76 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-serif text-xl text-[#FAF6F3] mb-6 flex items-center">
-              <span className="w-6 h-6 bg-[#C9A47A] rounded-lg flex items-center justify-center mr-3">
+            <h3 className={`font-serif text-xl text-[#FAF6F3] mb-6 flex items-center ${isRTL ? 'font-arabic' : ''}`}>
+              <span className={`w-6 h-6 bg-[#C9A47A] rounded-lg flex items-center justify-center ${isRTL ? 'ml-3' : 'mr-3'}`}>
                 <svg className="w-3 h-3 text-[#2A1E19]" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
                 </svg>
               </span>
-              Quick Links
+              {t('footer.quickLinks')}
             </h3>
             <ul className="space-y-3">
-              <li><Link href="/shop" className="text-[#8C7E77] hover:text-[#C9A47A] transition-colors duration-300 flex items-center group">
-                <span className="w-1 h-1 bg-[#C9A47A] rounded-full mr-3 group-hover:scale-150 transition-transform duration-300"></span>
-                Shop Collection
+              <li><Link href="/shop" className={`text-[#8C7E77] hover:text-[#C9A47A] transition-colors duration-300 flex items-center group ${isRTL ? 'font-arabic' : ''}`}>
+                <span className={`w-1 h-1 bg-[#C9A47A] rounded-full group-hover:scale-150 transition-transform duration-300 ${isRTL ? 'ml-3' : 'mr-3'}`}></span>
+                {t('footer.shopCollection')}
               </Link></li>
-              <li><Link href="/designer" className="text-[#8C7E77] hover:text-[#C9A47A] transition-colors duration-300 flex items-center group">
-                <span className="w-1 h-1 bg-[#C9A47A] rounded-full mr-3 group-hover:scale-150 transition-transform duration-300"></span>
-                Design Studio
+              <li><Link href="/designer" className={`text-[#8C7E77] hover:text-[#C9A47A] transition-colors duration-300 flex items-center group ${isRTL ? 'font-arabic' : ''}`}>
+                <span className={`w-1 h-1 bg-[#C9A47A] rounded-full group-hover:scale-150 transition-transform duration-300 ${isRTL ? 'ml-3' : 'mr-3'}`}></span>
+                {t('footer.designStudio')}
               </Link></li>
-              <li><Link href="/saved-designs" className="text-[#8C7E77] hover:text-[#C9A47A] transition-colors duration-300 flex items-center group">
-                <span className="w-1 h-1 bg-[#C9A47A] rounded-full mr-3 group-hover:scale-150 transition-transform duration-300"></span>
-                Saved Designs
+              <li><Link href="/saved-designs" className={`text-[#8C7E77] hover:text-[#C9A47A] transition-colors duration-300 flex items-center group ${isRTL ? 'font-arabic' : ''}`}>
+                <span className={`w-1 h-1 bg-[#C9A47A] rounded-full group-hover:scale-150 transition-transform duration-300 ${isRTL ? 'ml-3' : 'mr-3'}`}></span>
+                {t('footer.savedDesigns')}
               </Link></li>
-              <li><Link href="/about" className="text-[#8C7E77] hover:text-[#C9A47A] transition-colors duration-300 flex items-center group">
-                <span className="w-1 h-1 bg-[#C9A47A] rounded-full mr-3 group-hover:scale-150 transition-transform duration-300"></span>
-                About Us
+              <li><Link href="/about" className={`text-[#8C7E77] hover:text-[#C9A47A] transition-colors duration-300 flex items-center group ${isRTL ? 'font-arabic' : ''}`}>
+                <span className={`w-1 h-1 bg-[#C9A47A] rounded-full group-hover:scale-150 transition-transform duration-300 ${isRTL ? 'ml-3' : 'mr-3'}`}></span>
+                {t('footer.aboutUs')}
               </Link></li>
             </ul>
           </div>
 
           {/* Support */}
           <div>
-            <h3 className="font-serif text-xl text-[#FAF6F3] mb-6 flex items-center">
-              <span className="w-6 h-6 bg-[#C9A47A] rounded-lg flex items-center justify-center mr-3">
+            <h3 className={`font-serif text-xl text-[#FAF6F3] mb-6 flex items-center ${isRTL ? 'font-arabic' : ''}`}>
+              <span className={`w-6 h-6 bg-[#C9A47A] rounded-lg flex items-center justify-center ${isRTL ? 'ml-3' : 'mr-3'}`}>
                 <svg className="w-3 h-3 text-[#2A1E19]" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-2 0c0 .993-.241 1.929-.7 2.75l-1.006-1.006A6.5 6.5 0 0016 10a6.5 6.5 0 00-1.706-4.744L13.3 7.25A8 8 0 0116 10zM8 10a2 2 0 104 0 2 2 0 00-4 0z" clipRule="evenodd" />
                 </svg>
               </span>
-              Support
+              {t('footer.support')}
             </h3>
             <ul className="space-y-3">
-              <li><Link href="/contact" className="text-[#8C7E77] hover:text-[#C9A47A] transition-colors duration-300 flex items-center group">
-                <span className="w-1 h-1 bg-[#C9A47A] rounded-full mr-3 group-hover:scale-150 transition-transform duration-300"></span>
-                Contact Us
+              <li><Link href="/contact" className={`text-[#8C7E77] hover:text-[#C9A47A] transition-colors duration-300 flex items-center group ${isRTL ? 'font-arabic' : ''}`}>
+                <span className={`w-1 h-1 bg-[#C9A47A] rounded-full group-hover:scale-150 transition-transform duration-300 ${isRTL ? 'ml-3' : 'mr-3'}`}></span>
+                {t('footer.contactUs')}
               </Link></li>
-              <li><Link href="#" className="text-[#8C7E77] hover:text-[#C9A47A] transition-colors duration-300 flex items-center group">
-                <span className="w-1 h-1 bg-[#C9A47A] rounded-full mr-3 group-hover:scale-150 transition-transform duration-300"></span>
-                Shipping Info
+              <li><Link href="#" className={`text-[#8C7E77] hover:text-[#C9A47A] transition-colors duration-300 flex items-center group ${isRTL ? 'font-arabic' : ''}`}>
+                <span className={`w-1 h-1 bg-[#C9A47A] rounded-full group-hover:scale-150 transition-transform duration-300 ${isRTL ? 'ml-3' : 'mr-3'}`}></span>
+                {t('footer.shippingInfo')}
               </Link></li>
-              <li><Link href="#" className="text-[#8C7E77] hover:text-[#C9A47A] transition-colors duration-300 flex items-center group">
-                <span className="w-1 h-1 bg-[#C9A47A] rounded-full mr-3 group-hover:scale-150 transition-transform duration-300"></span>
-                Returns
+              <li><Link href="#" className={`text-[#8C7E77] hover:text-[#C9A47A] transition-colors duration-300 flex items-center group ${isRTL ? 'font-arabic' : ''}`}>
+                <span className={`w-1 h-1 bg-[#C9A47A] rounded-full group-hover:scale-150 transition-transform duration-300 ${isRTL ? 'ml-3' : 'mr-3'}`}></span>
+                {t('footer.returns')}
               </Link></li>
-              <li><Link href="#" className="text-[#8C7E77] hover:text-[#C9A47A] transition-colors duration-300 flex items-center group">
-                <span className="w-1 h-1 bg-[#C9A47A] rounded-full mr-3 group-hover:scale-150 transition-transform duration-300"></span>
-                Size Guide
+              <li><Link href="#" className={`text-[#8C7E77] hover:text-[#C9A47A] transition-colors duration-300 flex items-center group ${isRTL ? 'font-arabic' : ''}`}>
+                <span className={`w-1 h-1 bg-[#C9A47A] rounded-full group-hover:scale-150 transition-transform duration-300 ${isRTL ? 'ml-3' : 'mr-3'}`}></span>
+                {t('footer.sizeGuide')}
               </Link></li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-[#8C7E77]/20 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-[#8C7E77] text-center md:text-left">
-              © 2024 ÉTOILE. All rights reserved. Crafted with 
-              <span className="text-[#C9A47A] font-semibold"> elegance</span> and 
-              <span className="text-[#C9A47A] font-semibold"> precision</span>.
+          <div className={`flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 ${isRTL ? 'md:flex-row-reverse' : ''}`}>
+            <p className={`text-[#8C7E77] text-center md:text-left ${isRTL ? 'font-arabic md:text-right' : ''}`}>
+              {t('footer.copyright')}
+              <span className="text-[#C9A47A] font-semibold"> {t('footer.elegance')}</span> {t('footer.and')} 
+              <span className="text-[#C9A47A] font-semibold"> {t('footer.precision')}</span>.
             </p>
-            <div className="flex space-x-6 text-sm">
-              <Link href="#" className="text-[#8C7E77] hover:text-[#C9A47A] transition-colors duration-300">Privacy Policy</Link>
-              <Link href="#" className="text-[#8C7E77] hover:text-[#C9A47A] transition-colors duration-300">Terms of Service</Link>
-              <Link href="#" className="text-[#8C7E77] hover:text-[#C9A47A] transition-colors duration-300">Cookie Policy</Link>
+            <div className={`flex text-sm ${isRTL ? 'space-x-reverse space-x-6' : 'space-x-6'}`}>
+              <Link href="#" className={`text-[#8C7E77] hover:text-[#C9A47A] transition-colors duration-300 ${isRTL ? 'font-arabic' : ''}`}>{t('footer.privacyPolicy')}</Link>
+              <Link href="#" className={`text-[#8C7E77] hover:text-[#C9A47A] transition-colors duration-300 ${isRTL ? 'font-arabic' : ''}`}>{t('footer.termsOfService')}</Link>
+              <Link href="#" className={`text-[#8C7E77] hover:text-[#C9A47A] transition-colors duration-300 ${isRTL ? 'font-arabic' : ''}`}>{t('footer.cookiePolicy')}</Link>
             </div>
           </div>
         </div>
